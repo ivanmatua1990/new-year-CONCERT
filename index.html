@@ -6,9 +6,9 @@
     <title>Новогодний Корпоратив в Concert | Restaurant & Karaoke</title>
     
     <!-- Настройки для красивой ссылки в WhatsApp и Telegram -->
-    <meta property="og:title" content="Новогодний Корпоратив в Concert | Restaurant & Karaoke">
-    <meta property="og:description" content="Подарите своей команде праздник! Успейте забронировать лучшую дату.">
-    <meta property="og:image" content="https://ivanmatua1990.github.io/new-year-invite/logo.png">
+    <meta property="og:title" content="Новогодний Корпоратив в Concert">
+    <meta property="og:description" content="Декабрь 2026">
+    <meta property="og:image" content="https://ivanmatua1990.github.io/new-year-invite/preview.png">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ivanmatua1990.github.io/new-year-invite/">
 
@@ -21,19 +21,15 @@
     <style>
         :root {
             --gold-primary: #f2c76e;
-            --gold-shine: #fff2b2;
-            --gold-dark: #b8860b;
-            --gold-gradient: linear-gradient(135deg, #eed083 0%, #f7e4a9 25%, #c5973b 50%, #fcf0be 75%, #a67623 100%);
-            --red-festive: #c9182b;
-            --red-glow: #e6283b;
+            --gold-metallic: linear-gradient(180deg, #fffbeb 0%, #fae69e 20%, #e0b448 45%, #9b6c16 70%, #fef3c7 85%, #84570d 100%);
         }
-        body { font-family: 'Montserrat', sans-serif; background-color: #080709; color: #f7f7f7; overflow-x: hidden; touch-action: manipulation; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #000; touch-action: manipulation; }
+        .app-container { background-color: #080709; background: radial-gradient(circle at 50% 15%, rgba(184, 25, 41, 0.35) 0%, rgba(20, 10, 15, 0.85) 45%, #080709 80%); }
         .font-script { font-family: 'Great Vibes', cursive; }
-        .font-dancing { font-family: 'Dancing Script', cursive; }
         .font-serif-luxury { font-family: 'Playfair Display', serif; }
         
         .text-gold-metallic {
-            background: linear-gradient(180deg, #fffbeb 0%, #fae69e 20%, #e0b448 45%, #9b6c16 70%, #fef3c7 85%, #84570d 100%);
+            background: var(--gold-metallic);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 4px 18px rgba(224, 180, 72, 0.35);
@@ -41,18 +37,8 @@
         }
         
         .gold-border-glow { border: 1px solid rgba(242, 199, 110, 0.45); box-shadow: 0 0 20px rgba(223, 169, 58, 0.25), inset 0 0 15px rgba(223, 169, 58, 0.1); }
-        .gold-box-shadow { box-shadow: 0 10px 30px -5px rgba(230, 40, 59, 0.4), 0 0 20px rgba(242, 199, 110, 0.35); }
-        .radial-festive-bg { background: radial-gradient(circle at 50% 15%, rgba(184, 25, 41, 0.35) 0%, rgba(20, 10, 15, 0.85) 45%, #070709 80%); }
         
-        /* Snow Animation */
-        .snowflake {
-            position: absolute;
-            top: -10px;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.8;
-            animation: fall linear infinite;
-        }
+        .snowflake { position: absolute; top: -10px; background: white; border-radius: 50%; opacity: 0.8; animation: fall linear infinite; }
         @keyframes fall {
             0% { transform: translateY(0) rotate(0deg); opacity: 0; }
             10% { opacity: 1; }
@@ -60,7 +46,6 @@
             100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Equalizer Pulse for sound icon */
         .sound-bar { transition: height 0.2s ease; }
         .playing .bar-1 { animation: soundPulse 0.8s infinite alternate 0.1s; }
         .playing .bar-2 { animation: soundPulse 0.8s infinite alternate 0.3s; }
@@ -75,144 +60,188 @@
         }
     </style>
 </head>
-<body class="radial-festive-bg min-h-screen relative">
+<body class="text-[#f7f7f7]">
 
     <audio id="bgMusic" loop preload="auto">
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
-    <div id="snow-container" class="fixed inset-0 pointer-events-none z-0"></div>
+    <!-- Ограничитель ширины под мобильный телефон -->
+    <div class="app-container w-full max-w-[430px] mx-auto min-h-screen relative shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col">
+        
+        <div id="snow-container" class="absolute inset-0 pointer-events-none z-0 overflow-hidden"></div>
 
-    <!-- TOP BAR -->
-    <header class="sticky top-0 z-50 flex items-center justify-between px-5 py-3.5 bg-[#09080d]/85 backdrop-blur-md border-b border-white/5">
-        <button id="musicToggleBtn" class="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-neutral-900 to-neutral-800 border border-white/10 text-xs font-medium text-neutral-300 hover:text-white transition-all shadow-lg">
-            <div id="soundWaves" class="flex items-end gap-1 h-4 w-4 justify-center">
-                <span class="sound-bar bar-1 w-1 bg-amber-400 rounded-full h-1"></span>
-                <span class="sound-bar bar-2 w-1 bg-amber-400 rounded-full h-2"></span>
-                <span class="sound-bar bar-3 w-1 bg-amber-400 rounded-full h-1"></span>
-            </div>
-            <span id="musicText" class="tracking-wider">МУЗЫКА: ВЫКЛ</span>
-        </button>
-        <div class="flex items-center gap-1 bg-black/40 rounded-full p-1 border border-white/10">
-            <button class="px-2.5 py-1 rounded-full bg-amber-500 text-black text-[10px] font-bold tracking-wider">RU</button>
-            <button class="px-2.5 py-1 rounded-full text-neutral-400 text-[10px] font-bold tracking-wider">KZ</button>
-        </div>
-    </header>
-
-    <!-- MAIN CONTENT -->
-    <main class="relative z-10 pb-24">
-        <section class="flex flex-col items-center justify-center pt-8 pb-10 px-4 text-center">
-            <p class="text-amber-500/80 text-[10px] font-semibold tracking-[0.3em] uppercase mb-4">Премиальный Новый Год</p>
-            
-            <div class="w-64 h-64 md:w-80 md:h-80 mb-4 relative drop-shadow-2xl flex items-center justify-center">
-                <img src="logo.png" alt="Concert Logo" class="max-w-full max-h-full object-contain filter drop-shadow-[0_0_15px_rgba(242,199,110,0.4)]">
-            </div>
-
-            <h1 class="font-script text-4xl md:text-5xl text-white mt-2 mb-6 tracking-wide drop-shadow-md">
-                Дорогие наши гости! <span class="text-red-500">❤️</span>
-            </h1>
-
-            <div class="w-full max-w-md gold-border-glow rounded-3xl p-7 relative bg-black/40 backdrop-blur-sm mt-4">
-                <div class="absolute -top-6 left-4 text-4xl rotate-[-15deg] drop-shadow-lg z-20">🎅</div>
-                <div class="inline-block bg-red-600 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4 shadow-[0_0_15px_rgba(201,24,43,0.5)]">
-                    <i class="fa-solid fa-bell mr-1.5 animate-pulse"></i> Пора бронировать
+        <!-- TOP BAR (Оригинальная шапка) -->
+        <header class="relative z-50 flex items-center justify-between px-5 py-4 w-full">
+            <button id="musicToggleBtn" class="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/40 border border-white/10 text-xs font-medium text-neutral-300 hover:text-white transition-all backdrop-blur-sm">
+                <div id="soundWaves" class="flex items-end gap-1 h-4 w-4 justify-center">
+                    <span class="sound-bar bar-1 w-1 bg-amber-400 rounded-full h-1"></span>
+                    <span class="sound-bar bar-2 w-1 bg-amber-400 rounded-full h-2"></span>
+                    <span class="sound-bar bar-3 w-1 bg-amber-400 rounded-full h-1"></span>
                 </div>
-                
-                <h2 class="text-3xl font-bold uppercase tracking-widest leading-tight text-gold-metallic mb-4">Новогодний<br>Корпоратив!</h2>
-                
-                <div class="w-16 h-[1px] bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mb-5"></div>
-                <p class="text-neutral-300 text-sm leading-relaxed mb-6 font-light">Подарите своей команде праздник, который они заслужили! Незабываемая атмосфера, изысканное меню и море эмоций.</p>
-                <div class="bg-gradient-to-r from-amber-500/10 via-amber-500/20 to-amber-500/10 border border-amber-500/30 rounded-xl p-4">
-                    <p class="text-amber-400 text-sm font-semibold uppercase tracking-wider mb-1"><i class="fa-solid fa-gift mr-2"></i>Спецпредложение</p>
-                    <p class="text-white text-xs">Шоу-программа в подарок!</p>
-                </div>
+                <span id="musicText" class="tracking-wider">МУЗЫКА: ВЫКЛ</span>
+            </button>
+            <div class="flex items-center gap-1 bg-black/40 rounded-full p-1 border border-white/10 backdrop-blur-sm">
+                <button class="px-2.5 py-1 rounded-full bg-amber-500 text-black text-[10px] font-bold tracking-wider">RU</button>
+                <button class="px-2.5 py-1 rounded-full text-neutral-400 text-[10px] font-bold tracking-wider">KZ</button>
             </div>
-        </section>
+        </header>
 
-        <!-- BOOKING FORM -->
-        <section class="px-4 py-8 max-w-md mx-auto relative z-20" id="booking-section">
-            <h3 class="text-center text-2xl font-serif-luxury text-white mb-6 tracking-wide">Ваша бронь</h3>
-            
-            <div class="bg-[#111] border border-white/10 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
-                <div class="space-y-5 relative z-10">
-                    <div>
-                        <label class="block text-xs uppercase tracking-widest text-neutral-400 mb-2 font-medium">Ваше имя / Компания</label>
-                        <div class="relative">
-                            <i class="fa-regular fa-user absolute left-4 top-1/2 -translate-y-1/2 text-amber-500"></i>
-                            <input type="text" id="orgName" placeholder="Иван Иванов" class="w-full bg-[#1a1a1a] border border-neutral-800 focus:border-amber-500 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm outline-none transition-colors">
+        <!-- MAIN CONTENT -->
+        <main class="relative z-10 flex-1 pb-10">
+            <section class="flex flex-col items-center justify-center pt-2 pb-8 px-4 text-center">
+                <p class="text-amber-500/80 text-[10px] font-semibold tracking-[0.3em] uppercase mb-4">Премиальный Новый Год</p>
+                
+                <div class="w-64 h-64 mb-4 relative drop-shadow-2xl flex items-center justify-center">
+                    <img src="logo.png" alt="Concert Logo" class="max-w-full max-h-full object-contain filter drop-shadow-[0_0_15px_rgba(242,199,110,0.4)]">
+                </div>
+
+                <h1 class="font-script text-4xl text-white mt-2 mb-8 tracking-wide drop-shadow-md">
+                    Дорогие наши гости! <span class="text-red-500">❤️</span>
+                </h1>
+
+                <!-- ТАЙМЕР ОТСЧЕТА -->
+                <div class="mb-8 w-full">
+                    <h3 class="text-xs uppercase tracking-widest text-amber-500/80 mb-3">До Нового Года осталось:</h3>
+                    <div class="flex justify-center gap-3">
+                        <div class="bg-black/50 border border-amber-500/30 rounded-xl w-20 py-2.5 backdrop-blur-sm flex flex-col items-center shadow-[0_0_15px_rgba(242,199,110,0.1)]">
+                            <span id="days" class="text-2xl font-bold text-white mb-0.5">00</span>
+                            <span class="text-[9px] uppercase tracking-wider text-amber-500">Дней</span>
+                        </div>
+                        <div class="bg-black/50 border border-amber-500/30 rounded-xl w-20 py-2.5 backdrop-blur-sm flex flex-col items-center shadow-[0_0_15px_rgba(242,199,110,0.1)]">
+                            <span id="hours" class="text-2xl font-bold text-white mb-0.5">00</span>
+                            <span class="text-[9px] uppercase tracking-wider text-amber-500">Часов</span>
+                        </div>
+                        <div class="bg-black/50 border border-amber-500/30 rounded-xl w-20 py-2.5 backdrop-blur-sm flex flex-col items-center shadow-[0_0_15px_rgba(242,199,110,0.1)]">
+                            <span id="minutes" class="text-2xl font-bold text-white mb-0.5">00</span>
+                            <span class="text-[9px] uppercase tracking-wider text-amber-500">Минут</span>
                         </div>
                     </div>
+                </div>
 
-                    <div>
-                        <label class="block text-xs uppercase tracking-widest text-neutral-400 mb-2 font-medium">Желаемая дата</label>
-                        <div class="relative">
-                            <i class="fa-regular fa-calendar absolute left-4 top-1/2 -translate-y-1/2 text-amber-500 z-10"></i>
-                            <select id="partyDate" class="w-full bg-[#1a1a1a] border border-neutral-800 focus:border-amber-500 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm outline-none appearance-none transition-colors relative z-0">
-                                <option value="" disabled selected>Выберите дату (15 - 30 декабря)</option>
-                                <option value="15 декабря">15 декабря 2026</option>
-                                <option value="16 декабря">16 декабря 2026</option>
-                                <option value="17 декабря">17 декабря 2026</option>
-                                <option value="18 декабря">18 декабря 2026</option>
-                                <option value="19 декабря">19 декабря 2026</option>
-                                <option value="20 декабря">20 декабря 2026</option>
-                                <option value="21 декабря">21 декабря 2026</option>
-                                <option value="22 декабря">22 декабря 2026</option>
-                                <option value="23 декабря">23 декабря 2026</option>
-                                <option value="24 декабря">24 декабря 2026</option>
-                                <option value="25 декабря">25 декабря 2026</option>
-                                <option value="26 декабря">26 декабря 2026</option>
-                                <option value="27 декабря">27 декабря 2026</option>
-                                <option value="28 декабря">28 декабря 2026</option>
-                                <option value="29 декабря">29 декабря 2026</option>
-                                <option value="30 декабря">30 декабря 2026</option>
-                            </select>
-                            <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 text-xs pointer-events-none"></i>
-                        </div>
+                <div class="w-full gold-border-glow rounded-3xl p-7 relative bg-black/40 backdrop-blur-sm mt-2">
+                    <div class="absolute -top-6 left-4 text-4xl rotate-[-15deg] drop-shadow-lg z-20">🎅</div>
+                    <div class="inline-block bg-red-600 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4 shadow-[0_0_15px_rgba(201,24,43,0.5)]">
+                        <i class="fa-solid fa-bell mr-1.5 animate-pulse"></i> Пора бронировать
                     </div>
-
-                    <div>
-                        <div class="flex justify-between items-end mb-2">
-                            <label class="block text-xs uppercase tracking-widest text-neutral-400 font-medium">Количество гостей</label>
-                            <span id="guestCountDisplay" class="text-amber-500 font-bold text-lg">25 чел.</span>
-                        </div>
-                        <input type="range" id="guestCount" min="1" max="150" value="25" class="w-full accent-amber-500 h-1.5 bg-neutral-800 rounded-lg appearance-none cursor-pointer">
-                        <div class="flex justify-between text-[10px] text-neutral-500 mt-1">
-                            <span>1</span>
-                            <span>150</span>
-                        </div>
-                    </div>
-
-                    <button onclick="sendToWhatsApp()" class="w-full btn-gold-shimmer text-white font-bold uppercase tracking-widest py-4 rounded-xl shadow-lg mt-4 flex items-center justify-center gap-2 transform active:scale-[0.98] transition-all">
-                        <i class="fa-brands fa-whatsapp text-xl"></i> Напишите нам прямо сейчас
-                    </button>
                     
-                    <a href="tel:+77777772454" class="block text-center w-full bg-transparent border border-white/20 text-white font-medium uppercase tracking-wider py-3.5 rounded-xl hover:bg-white/5 mt-3 text-xs transition-colors">
-                        <i class="fa-solid fa-phone mr-2 text-neutral-400"></i> Позвонить: +7 777 777 2454
-                    </a>
+                    <h2 class="text-3xl font-bold uppercase tracking-widest leading-tight text-gold-metallic mb-4">Новогодний<br>Корпоратив!</h2>
+                    
+                    <div class="w-16 h-[1px] bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mb-5"></div>
+                    <p class="text-neutral-300 text-sm leading-relaxed mb-6 font-light">Подарите своей команде праздник, который они заслужили! Незабываемая атмосфера, изысканное меню и море эмоций.</p>
+                    <div class="bg-gradient-to-r from-amber-500/10 via-amber-500/20 to-amber-500/10 border border-amber-500/30 rounded-xl p-4">
+                        <p class="text-amber-400 text-sm font-semibold uppercase tracking-wider mb-1"><i class="fa-solid fa-gift mr-2"></i>Спецпредложение</p>
+                        <p class="text-white text-xs">Шоу-программа в подарок!</p>
+                    </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
 
-    <!-- STICKY BOTTOM CALL BUTTON -->
-    <div class="fixed bottom-0 left-0 w-full bg-[#080709]/95 backdrop-blur-lg border-t border-white/10 p-4 z-50 flex gap-3 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]">
-        <a href="tel:+77777772454" class="flex-1 bg-[#1a1a1a] border border-white/10 rounded-xl flex items-center justify-center text-white text-sm font-medium h-12 active:bg-neutral-800">
-            <i class="fa-solid fa-phone mr-2"></i> Позвонить
-        </a>
-        <button onclick="document.getElementById('booking-section').scrollIntoView({behavior: 'smooth'})" class="flex-1 bg-amber-600 rounded-xl flex items-center justify-center text-white text-sm font-bold uppercase tracking-wider h-12 shadow-[0_0_15px_rgba(217,119,6,0.4)] active:scale-95 transition-transform">
-            Бронь <i class="fa-solid fa-arrow-up ml-2"></i>
-        </button>
+            <!-- BOOKING FORM -->
+            <section class="px-4 py-4 relative z-20" id="booking-section">
+                <h3 class="text-center text-2xl font-serif-luxury text-white mb-6 tracking-wide">Ваша бронь</h3>
+                
+                <div class="bg-[#111] border border-white/10 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
+                    <div class="space-y-5 relative z-10">
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-neutral-400 mb-2 font-medium">Ваше имя / Компания</label>
+                            <div class="relative">
+                                <i class="fa-regular fa-user absolute left-4 top-1/2 -translate-y-1/2 text-amber-500"></i>
+                                <input type="text" id="orgName" placeholder="Иван Иванов" class="w-full bg-[#1a1a1a] border border-neutral-800 focus:border-amber-500 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm outline-none transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-neutral-400 mb-2 font-medium">Желаемая дата</label>
+                            <div class="relative">
+                                <i class="fa-regular fa-calendar absolute left-4 top-1/2 -translate-y-1/2 text-amber-500 z-10"></i>
+                                <select id="partyDate" class="w-full bg-[#1a1a1a] border border-neutral-800 focus:border-amber-500 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm outline-none appearance-none transition-colors relative z-0">
+                                    <option value="" disabled selected>Выберите дату (15 - 30 декабря)</option>
+                                    <option value="15 декабря">15 декабря 2026</option>
+                                    <option value="16 декабря">16 декабря 2026</option>
+                                    <option value="17 декабря">17 декабря 2026</option>
+                                    <option value="18 декабря">18 декабря 2026</option>
+                                    <option value="19 декабря">19 декабря 2026</option>
+                                    <option value="20 декабря">20 декабря 2026</option>
+                                    <option value="21 декабря">21 декабря 2026</option>
+                                    <option value="22 декабря">22 декабря 2026</option>
+                                    <option value="23 декабря">23 декабря 2026</option>
+                                    <option value="24 декабря">24 декабря 2026</option>
+                                    <option value="25 декабря">25 декабря 2026</option>
+                                    <option value="26 декабря">26 декабря 2026</option>
+                                    <option value="27 декабря">27 декабря 2026</option>
+                                    <option value="28 декабря">28 декабря 2026</option>
+                                    <option value="29 декабря">29 декабря 2026</option>
+                                    <option value="30 декабря">30 декабря 2026</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 text-xs pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-end mb-2">
+                                <label class="block text-xs uppercase tracking-widest text-neutral-400 font-medium">Количество гостей</label>
+                                <span id="guestCountDisplay" class="text-amber-500 font-bold text-lg">25 чел.</span>
+                            </div>
+                            <input type="range" id="guestCount" min="1" max="150" value="25" class="w-full accent-amber-500 h-1.5 bg-neutral-800 rounded-lg appearance-none cursor-pointer">
+                            <div class="flex justify-between text-[10px] text-neutral-500 mt-1">
+                                <span>1</span>
+                                <span>150</span>
+                            </div>
+                        </div>
+
+                        <button onclick="sendToWhatsApp()" class="w-full btn-gold-shimmer text-white font-bold uppercase tracking-widest py-4 rounded-xl shadow-lg mt-4 flex items-center justify-center gap-2 transform active:scale-[0.98] transition-all">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> Напишите нам прямо сейчас
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- СОЦИАЛЬНЫЕ СЕТИ 2ГИС И INSTAGRAM -->
+            <section class="flex justify-center items-center gap-6 mt-6 mb-4">
+                <!-- Замените символ # на вашу ссылку в Instagram -->
+                <a href="#" target="_blank" class="w-12 h-12 rounded-full bg-gradient-to-tr from-pink-500 via-red-500 to-yellow-500 flex items-center justify-center text-white text-2xl shadow-[0_0_15px_rgba(236,72,153,0.3)] transition-transform active:scale-95">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <!-- Замените символ # на вашу ссылку в 2ГИС -->
+                <a href="#" target="_blank" class="w-12 h-12 rounded-full bg-[#83B724] flex items-center justify-center text-white shadow-[0_0_15px_rgba(131,183,36,0.3)] transition-transform active:scale-95">
+                    <span class="font-bold text-sm tracking-wider">2ГИС</span>
+                </a>
+            </section>
+        </main>
     </div>
 
     <script>
-        // Update Guest Count
+        // Таймер обратного отсчета до 31 декабря
+        const countDownDate = new Date("Dec 31, 2026 23:59:59").getTime();
+        const timerInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                document.getElementById("days").innerHTML = "00";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+        }, 1000);
+
+        // Обновление количества гостей
         const guestSlider = document.getElementById('guestCount');
         const guestDisplay = document.getElementById('guestCountDisplay');
         guestSlider.addEventListener('input', (e) => {
             guestDisplay.textContent = `${e.target.value} чел.`;
         });
 
-        // Send to WhatsApp Logic
+        // Отправка в WhatsApp
         function sendToWhatsApp() {
             const orgName = document.getElementById('orgName').value || 'Не указано';
             const date = document.getElementById('partyDate').value || 'Не выбрана';
@@ -225,7 +254,7 @@
             window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
         }
 
-        // Music Logic
+        // Музыка
         const audio = document.getElementById('bgMusic');
         const toggleBtn = document.getElementById('musicToggleBtn');
         const soundWaves = document.getElementById('soundWaves');
@@ -237,53 +266,4 @@
             if (isPlaying) {
                 audio.pause();
                 soundWaves.classList.remove('playing');
-                musicText.textContent = "МУЗЫКА: ВЫКЛ";
-                toggleBtn.classList.remove('border-amber-500/50', 'text-amber-400');
-            } else {
-                audio.play().then(() => {
-                    soundWaves.classList.add('playing');
-                    musicText.textContent = "МУЗЫКА: ВКЛ";
-                    toggleBtn.classList.add('border-amber-500/50', 'text-amber-400');
-                }).catch(err => console.log("Audio play failed:", err));
-            }
-            isPlaying = !isPlaying;
-        }
-
-        toggleBtn.addEventListener('click', () => {
-            hasInteracted = true;
-            toggleMusic();
-        });
-
-        // Auto-play on first scroll or touch
-        function initAudioOnInteraction() {
-            if (!hasInteracted && !isPlaying) {
-                hasInteracted = true;
-                toggleMusic();
-            }
-            window.removeEventListener('scroll', initAudioOnInteraction);
-            window.removeEventListener('touchstart', initAudioOnInteraction);
-            window.removeEventListener('click', initAudioOnInteraction);
-        }
-
-        window.addEventListener('scroll', initAudioOnInteraction, { once: true });
-        window.addEventListener('touchstart', initAudioOnInteraction, { once: true });
-        window.addEventListener('click', initAudioOnInteraction, { once: true });
-
-        // Simple Snow Logic
-        function createSnowflake() {
-            const snowContainer = document.getElementById('snow-container');
-            const flake = document.createElement('div');
-            flake.classList.add('snowflake');
-            const size = Math.random() * 4 + 2; 
-            flake.style.width = `${size}px`;
-            flake.style.height = `${size}px`;
-            flake.style.left = `${Math.random() * 100}vw`;
-            flake.style.animationDuration = `${Math.random() * 3 + 3}s`; 
-            
-            snowContainer.appendChild(flake);
-            setTimeout(() => { flake.remove(); }, 6000);
-        }
-        setInterval(createSnowflake, 150);
-    </script>
-</body>
-</html>
+                musicText.textContent = "МУЗЫКА:
