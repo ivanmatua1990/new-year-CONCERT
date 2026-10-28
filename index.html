@@ -15,7 +15,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Обновленные шрифты с полной поддержкой казахского языка (Cyrillic Extended) -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -24,7 +25,8 @@
             --gold-metallic: linear-gradient(180deg, #fffbeb 0%, #fae69e 20%, #e0b448 45%, #9b6c16 70%, #fef3c7 85%, #84570d 100%);
         }
         body { font-family: 'Montserrat', sans-serif; background-color: #080709; color: #f7f7f7; overflow-x: hidden; touch-action: manipulation; }
-        .font-script { font-family: 'Great Vibes', cursive; }
+        
+        .font-caveat { font-family: 'Caveat', cursive; }
         .font-serif-luxury { font-family: 'Playfair Display', serif; }
         
         .text-gold-metallic {
@@ -35,8 +37,10 @@
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
         }
         
-        .gold-border-glow { border: 1px solid rgba(242, 199, 110, 0.45); box-shadow: 0 0 20px rgba(223, 169, 58, 0.25), inset 0 0 15px rgba(223, 169, 58, 0.1); }
-        .radial-festive-bg { background: radial-gradient(circle at 50% 15%, rgba(184, 25, 41, 0.35) 0%, rgba(20, 10, 15, 0.85) 45%, #070709 80%); }
+        .gold-border-glow { border: 1px solid rgba(242, 199, 110, 0.35); box-shadow: 0 0 20px rgba(223, 169, 58, 0.15), inset 0 0 15px rgba(223, 169, 58, 0.05); }
+        
+        /* Темный фон как на скриншоте */
+        .radial-festive-bg { background: radial-gradient(circle at 50% 0%, #1a1510 0%, #0a0a0a 40%, #050505 100%); }
         
         .snowflake { position: absolute; top: -10px; background: white; border-radius: 50%; opacity: 0.8; animation: fall linear infinite; }
         @keyframes fall {
@@ -58,6 +62,14 @@
             background-image: linear-gradient(90deg, #c9182b 0%, #ff3b50 35%, #f2c76e 50%, #ff3b50 65%, #c9182b 100%);
             animation: goldShimmer 4s infinite linear;
         }
+
+        /* Анимация пульсации для спецпредложения */
+        @keyframes pulseRed {
+            0% { box-shadow: 0 0 10px 0 rgba(220, 38, 38, 0.4); }
+            50% { box-shadow: 0 0 25px 5px rgba(220, 38, 38, 0.7); }
+            100% { box-shadow: 0 0 10px 0 rgba(220, 38, 38, 0.4); }
+        }
+        .promo-box { animation: pulseRed 2s infinite; border: 1px solid rgba(239, 68, 68, 0.6); }
 
         /* Language Switcher Logic */
         .kz { display: none; }
@@ -105,7 +117,7 @@
                 <img src="logo.png" alt="Concert Logo" class="max-w-full max-h-full object-contain filter drop-shadow-[0_0_15px_rgba(242,199,110,0.4)]">
             </div>
 
-            <h1 class="font-script text-4xl md:text-5xl text-white mt-2 mb-8 tracking-wide drop-shadow-md">
+            <h1 class="font-caveat text-4xl md:text-5xl text-white mt-2 mb-8 tracking-wide drop-shadow-md">
                 <span class="ru">Дорогие наши гости!</span>
                 <span class="kz">Құрметті қонақтар!</span> <span class="text-red-500">❤️</span>
             </h1>
@@ -144,19 +156,23 @@
                 </div>
                 
                 <h2 class="text-3xl font-bold uppercase tracking-widest leading-tight text-gold-metallic mb-4 block-ru">Новогодний<br>Корпоратив!</h2>
-                <h2 class="text-3xl font-bold uppercase tracking-widest leading-tight text-gold-metallic mb-4 block-kz">Жаңа жылдық<br>Корпоратив!</h2>
+                <h2 class="text-3xl font-bold uppercase tracking-widest leading-tight text-gold-metallic mb-4 block-kz">Жаңа жылдық<br>корпоративтік!</h2>
                 
                 <div class="w-16 h-[1px] bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mb-5"></div>
                 <p class="text-neutral-300 text-sm leading-relaxed mb-6 font-light block-ru">Подарите своей команде праздник, который они заслужили! Незабываемая атмосфера, изысканное меню и море эмоций.</p>
                 <p class="text-neutral-300 text-sm leading-relaxed mb-6 font-light block-kz">Ұжымыңызға лайықты мереке сыйлаңыз! Ұмытылмас атмосфера, керемет мәзір және көтеріңкі көңіл-күй.</p>
                 
-                <div class="bg-gradient-to-r from-amber-500/10 via-amber-500/20 to-amber-500/10 border border-amber-500/30 rounded-xl p-4">
-                    <p class="text-amber-400 text-sm font-semibold uppercase tracking-wider mb-1">
-                        <i class="fa-solid fa-gift mr-2"></i>
-                        <span class="ru">Спецпредложение</span><span class="kz">Арнайы ұсыныс</span>
+                <!-- НОВЫЙ ЯРКИЙ БЛОК СПЕЦПРЕДЛОЖЕНИЯ -->
+                <div class="promo-box bg-gradient-to-br from-red-950 to-[#1a0505] rounded-xl p-4 mt-2 relative">
+                    <div class="absolute inset-0 bg-red-500/10 shimmer-bg rounded-xl"></div>
+                    <p class="text-red-500 text-[13px] font-bold uppercase tracking-wider mb-1.5 relative z-10 flex items-center justify-center">
+                        <i class="fa-solid fa-gift mr-2 text-lg animate-bounce drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]"></i>
+                        <span class="ru drop-shadow-md">Спецпредложение!</span>
+                        <span class="kz drop-shadow-md">Арнайы ұсыныс!</span>
                     </p>
-                    <p class="text-white text-xs">
-                        <span class="ru">Шоу-программа в подарок!</span><span class="kz">Шоу-бағдарлама сыйлыққа!</span>
+                    <p class="text-white text-sm font-semibold relative z-10">
+                        <span class="ru">Шоу-программа в подарок!</span>
+                        <span class="kz">Шоу-бағдарлама сыйлыққа!</span>
                     </p>
                 </div>
             </div>
@@ -168,7 +184,7 @@
                 <span class="ru">Ваша бронь</span><span class="kz">Сіздің броныңыз</span>
             </h3>
             
-            <div class="bg-[#111] border border-white/10 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
+            <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
                 <div class="space-y-5 relative z-10">
                     <div>
                         <label class="block text-xs uppercase tracking-widest text-neutral-400 mb-2 font-medium">
@@ -176,7 +192,7 @@
                         </label>
                         <div class="relative">
                             <i class="fa-regular fa-user absolute left-4 top-1/2 -translate-y-1/2 text-amber-500"></i>
-                            <input type="text" id="orgName" placeholder="Иван Иванов" class="w-full bg-[#1a1a1a] border border-neutral-800 focus:border-amber-500 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm outline-none transition-colors">
+                            <input type="text" id="orgName" placeholder="Иван Иванов" class="w-full bg-[#141414] border border-neutral-800 focus:border-amber-500 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm outline-none transition-colors">
                         </div>
                     </div>
 
@@ -186,7 +202,7 @@
                         </label>
                         <div class="relative">
                             <i class="fa-regular fa-calendar absolute left-4 top-1/2 -translate-y-1/2 text-amber-500 z-10"></i>
-                            <select id="partyDate" class="w-full bg-[#1a1a1a] border border-neutral-800 focus:border-amber-500 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm outline-none appearance-none transition-colors relative z-0">
+                            <select id="partyDate" class="w-full bg-[#141414] border border-neutral-800 focus:border-amber-500 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm outline-none appearance-none transition-colors relative z-0">
                                 <option value="" disabled selected id="datePlaceholder">Выберите дату (15 - 30 декабря)</option>
                                 <option value="15 декабря">15 декабря / желтоқсан 2026</option>
                                 <option value="16 декабря">16 декабря / желтоқсан 2026</option>
@@ -228,7 +244,7 @@
                         <span class="ru">Напишите нам прямо сейчас</span><span class="kz">Бізге қазір жазыңыз</span>
                     </button>
                     
-                    <a href="tel:+77777772454" class="block text-center w-full bg-transparent border border-white/20 text-white font-medium uppercase tracking-wider py-3.5 rounded-xl hover:bg-white/5 mt-3 text-xs transition-colors">
+                    <a href="tel:+77777772454" class="block text-center w-full bg-transparent border border-white/10 text-white font-medium uppercase tracking-wider py-3.5 rounded-xl hover:bg-white/5 mt-3 text-xs transition-colors">
                         <i class="fa-solid fa-phone mr-2 text-neutral-400"></i> 
                         <span class="ru">Позвонить:</span><span class="kz">Қоңырау шалу:</span> +7 777 777 2454
                     </a>
@@ -238,10 +254,10 @@
 
         <!-- СОЦИАЛЬНЫЕ СЕТИ -->
         <section class="flex flex-col gap-3 mt-6 mb-4 px-4 max-w-md mx-auto w-full">
-            <a href="https://www.instagram.com/concert_krg" target="_blank" class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white py-3.5 rounded-xl font-bold uppercase tracking-wider shadow-lg active:scale-95 transition-transform text-xs">
+            <a href="https://www.instagram.com/concert_krg" target="_blank" class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white py-3.5 rounded-xl font-bold uppercase tracking-wider shadow-lg active:scale-95 transition-transform text-xs border border-white/5">
                 <i class="fa-brands fa-instagram text-lg"></i> <span class="ru">Мы в Instagram</span><span class="kz">Біз Instagram-дамыз</span>
             </a>
-            <a href="https://2gis.kz/karaganda/firm/70000001074421547" target="_blank" class="w-full flex items-center justify-center gap-2 bg-[#83B724] text-white py-3.5 rounded-xl font-bold uppercase tracking-wider shadow-lg active:scale-95 transition-transform text-xs">
+            <a href="https://2gis.kz/karaganda/firm/70000001074421547" target="_blank" class="w-full flex items-center justify-center gap-2 bg-[#83B724] text-white py-3.5 rounded-xl font-bold uppercase tracking-wider shadow-lg active:scale-95 transition-transform text-xs border border-white/5">
                 <span class="font-black text-lg">2ГИС</span> <span class="ru">Как нас найти</span><span class="kz">Бізді қалай табуға болады</span>
             </a>
         </section>
@@ -290,7 +306,7 @@
             document.getElementById('guestNum').textContent = e.target.value;
         });
 
-        // Отправка WhatsApp (с учетом языка)
+        // Отправка WhatsApp
         function sendToWhatsApp() {
             const orgName = document.getElementById('orgName').value || 'Не указано';
             const date = document.getElementById('partyDate').value || 'Не выбрана';
@@ -298,7 +314,7 @@
             const isKz = document.body.classList.contains('lang-kz');
 
             const rawMessage = isKz 
-                ? `🎄 *Concert мейрамханасындағы Жаңа жылдық корпоративке өтінім!*\n\n👤 *Компания:* ${orgName}\n🗓️ *Күн:* ${date}\n👥 *Адам саны:* ${guests}\n🎁 *Арнайы ұсыныс:* Шоу-бағдарлама сыйлыққа!\n\nСәлеметсіз бе! Бос күнді брондап, мәзірді есептеткіміз келеді.`
+                ? `🎄 *Concert мейрамханасындағы Жаңа жылдық корпоративтікке өтінім!*\n\n👤 *Компания:* ${orgName}\n🗓️ *Күн:* ${date}\n👥 *Адам саны:* ${guests}\n🎁 *Арнайы ұсыныс:* Шоу-бағдарлама сыйлыққа!\n\nСәлеметсіз бе! Бос күнді брондап, мәзірді есептеткіміз келеді.`
                 : `🎄 *Заявка на Новогодний Корпоратив в Concert!*\n\n👤 *Компания:* ${orgName}\n🗓️ *Дата:* ${date}\n👥 *Количество гостей:* ${guests} персон\n🎁 *Спецпредложение:* Шоу-программа в подарок!\n\nЗдравствуйте! Хотим забронировать свободную дату и получить персональный расчет меню.`;
             
             window.open(`https://wa.me/77777772454?text=${encodeURIComponent(rawMessage)}`, '_blank');
