@@ -666,6 +666,29 @@
 
     document.getElementById('musicToggleBtn').addEventListener('click', toggleAudio);
 
+    /* --- АВТОЗАПУСК МУЗЫКИ ПРИ ПРОЛИСТЫВАНИИ / КАСАНИИ --- */
+    function autoPlayOnInteraction() {
+      if (!isPlayingAudio) {
+        bgMusic.play().then(() => {
+          isPlayingAudio = true;
+          document.getElementById('soundWaves').classList.add('playing');
+          document.getElementById('musicLabel').innerText = currentLang === 'ru' ? 'МУЗЫКА: ВКЛ' : 'ӘУЕН: ҚОСУЛЫ';
+          document.getElementById('musicToggleBtn').classList.add('border-emerald-400');
+        }).catch(err => {
+          console.log("Автозапуск заблокирован браузером до явного клика: ", err);
+        });
+      }
+      // Удаляем слушатели, чтобы код не срабатывал повторно
+      window.removeEventListener('scroll', autoPlayOnInteraction);
+      window.removeEventListener('touchstart', autoPlayOnInteraction);
+      document.body.removeEventListener('click', autoPlayOnInteraction);
+    }
+
+    // Отслеживаем скролл, касание и клик по экрану
+    window.addEventListener('scroll', autoPlayOnInteraction, { once: true, passive: true });
+    window.addEventListener('touchstart', autoPlayOnInteraction, { once: true, passive: true });
+    document.body.addEventListener('click', autoPlayOnInteraction, { once: true });
+
     /* ==========================================================
        6. FALLING SNOW PARTICLES (Smooth Canvas Effect)
        ========================================================== */
