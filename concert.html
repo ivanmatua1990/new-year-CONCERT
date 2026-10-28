@@ -119,7 +119,7 @@
   <canvas id="snow-canvas"></canvas>
 
   <!-- Background Music Element -->
-  <audio id="bgMusic" src="Frank_Sinatra_-_Let_It_Snow_Let_It_Snow_Let_It_Snow_48244115.mp3" loop preload="auto"></audio>
+  <audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
 
   <!-- Ambient Light Orbs -->
   <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[480px] h-[360px] bg-red-600/15 rounded-full blur-[110px] pointer-events-none -z-10"></div>
@@ -159,10 +159,8 @@
       <!-- ORIGINAL LOGO IMAGE (Direct file from user) -->
       <div class="flex flex-col items-center justify-center my-2 transform hover:scale-[1.02] transition-transform duration-500">
         <div class="w-full max-w-[290px] px-2 py-1 flex items-center justify-center">
-          <!-- ВНИМАНИЕ: Для предпросмотра здесь используется закодированный SVG-плейсхолдер. -->
-          <!-- Чтобы вернуть ВАШ оригинальный файл, замените длинный текст внутри атрибута src на: src="Золотой логотип Concert с микрофоном_2.png" -->
           <img 
-            src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 320'%3E%3Cdefs%3E%3ClinearGradient id='gold' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23f0c365'/%3E%3Cstop offset='50%25' stop-color='%23fff7c2'/%3E%3Cstop offset='100%25' stop-color='%23bb8928'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg transform='translate(0,-10)'%3E%3Cpath d='M160,100 v60 a40,40 0 0,0 80,0 v-60 a40,40 0 0,0 -80,0 z' fill='url(%23gold)'/%3E%3Cpath d='M140,130 v30 a60,60 0 0,0 120,0 v-30' fill='none' stroke='url(%23gold)' stroke-width='15' stroke-linecap='round'/%3E%3Crect x='190' y='225' width='20' height='30' fill='url(%23gold)'/%3E%3Crect x='160' y='255' width='80' height='10' rx='5' fill='url(%23gold)'/%3E%3Cpath d='M120,130 a80,80 0 0,1 160,0' fill='none' stroke='url(%23gold)' stroke-width='12' stroke-linecap='round'/%3E%3Crect x='100' y='120' width='20' height='50' rx='10' fill='url(%23gold)'/%3E%3Crect x='280' y='120' width='20' height='50' rx='10' fill='url(%23gold)'/%3E%3Ctext x='200' y='310' font-family='sans-serif' font-size='60' font-weight='900' fill='url(%23gold)' text-anchor='middle' letter-spacing='1'%3ECONCERT%3C/text%3E%3C/g%3E%3C/svg%3E" 
+            src="logo.png" 
             alt="Concert Logo" 
             class="w-full h-auto object-contain drop-shadow-[0_10px_25px_rgba(224,180,72,0.4)]"
             id="mainLogo"
@@ -405,9 +403,9 @@
 
         <!-- Direct Phone Call Backup -->
         <div class="mt-3 text-center">
-          <a href="tel:+77003529135" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-400 hover:text-amber-300 transition-colors">
+          <a href="tel:+77777772454" class="inline-flex items-center gap-2 text-xs font-semibold text-zinc-400 hover:text-amber-300 transition-colors">
             <i class="fa-solid fa-phone-volume text-amber-400"></i>
-            <span>Позвонить банкетному менеджеру: <strong>+7 (700) 352-91-35</strong></span>
+            <span>Позвонить банкетному менеджеру: <strong>+7 (777) 777-24-54</strong></span>
           </a>
         </div>
       </div>
@@ -450,7 +448,7 @@
 
     <!-- STICKY BOTTOM QUICK ACTION BAR FOR MOBILE -->
     <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] p-3 bg-neutral-950/90 backdrop-blur-md border-t border-amber-500/30 z-40 flex gap-2">
-      <a href="tel:+77003529135" class="p-3 bg-neutral-900 hover:bg-neutral-800 text-amber-300 border border-amber-500/30 rounded-xl flex items-center justify-center text-lg active:scale-95 transition-all">
+      <a href="tel:+77777772454" class="p-3 bg-neutral-900 hover:bg-neutral-800 text-amber-300 border border-amber-500/30 rounded-xl flex items-center justify-center text-lg active:scale-95 transition-all">
         <i class="fa-solid fa-phone"></i>
       </a>
       <a href="#booking" class="flex-1 py-3 px-4 btn-gold-shimmer rounded-xl text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-all">
@@ -630,7 +628,7 @@
       const message = encodeURIComponent(rawMessage);
 
       // Concert manager phone in Karaganda
-      const managerWhatsApp = "77003529135";
+      const managerWhatsApp = "77777772454";
 
       setTimeout(() => {
         window.open(`https://wa.me/${managerWhatsApp}?text=${message}`, '_blank');
